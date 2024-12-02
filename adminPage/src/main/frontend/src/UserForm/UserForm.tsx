@@ -5,6 +5,7 @@ import {ModalTitle} from "./ModalTitle";
 import SubmitButton from "../SubmitButton";
 import {MaskedInput} from "antd-mask-input";
 import axios from "axios";
+import {log} from "node:util";
 
 
 const UserForm: FC<UserFormProps> = ({open, setOpen}) => {
@@ -26,7 +27,14 @@ const UserForm: FC<UserFormProps> = ({open, setOpen}) => {
     }
 
    const onSubmit = () => {
-       axios.post("http://localhost:8094/api/users/add", form)
+       console.log(form.getFieldsValue())
+       axios.post("http://localhost:8094/api/adminpage/create", form.getFieldsValue(), {
+           headers: {
+               Accept: 'application/json',
+               'Content-Type': 'application/json',
+               'Access-Control-Allow-Origin': '*',
+           },
+       }).then(r => console.log(r.data))
    }
 
     return (

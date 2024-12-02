@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "user", schema = "adminpage")
 @Data
@@ -24,7 +26,9 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private String phone;
+    private String phoneNumber;
     private String sex;
+    private String role;
+    private Date date;
 
 }
