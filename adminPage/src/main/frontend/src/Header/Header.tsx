@@ -11,7 +11,7 @@ const Header = ({title, isOpenModal, showSettings}: HeaderProps) => {
 
     return (
         <>
-            <Flex gap={50} align={'center'} justify={'space-between'} style={{paddingLeft: 40, paddingRight: 40}}>
+            <Flex gap={50} align={'center'} justify={'space-between'} style={{paddingLeft: 40, paddingRight: 40, paddingTop: 10}}>
                 <Flex gap={30} align={'center'}>
                     <Title style={{marginBottom: 30}}>{title}</Title>
                     <Search placeholder="input search text" allowClear onSearch={() => {
