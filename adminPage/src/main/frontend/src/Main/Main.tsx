@@ -3,7 +3,9 @@ import Header from "../Header";
 import {HeaderEnum} from "../enums/HeaderEnum";
 import UserForm from "../UserForm";
 import {PlusOutlined} from "@ant-design/icons";
-import {Button, Tooltip} from "antd";
+import {Button} from "antd";
+import UsersList from "../UsersList";
+
 
 const Main = () => {
     const [isOpenSettings, setIsOpenSettings] = React.useState(false);
@@ -25,6 +27,7 @@ const Main = () => {
                 icon={<PlusOutlined />}
                 onClick={showSettings}
             >Создать пользователя</Button>
+            <UsersList/>
         </div>
     );
 };

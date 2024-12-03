@@ -5,7 +5,6 @@ import {ModalTitle} from "./ModalTitle";
 import SubmitButton from "../SubmitButton";
 import {MaskedInput} from "antd-mask-input";
 import axios from "axios";
-import {log} from "node:util";
 
 
 const UserForm: FC<UserFormProps> = ({open, setOpen}) => {
@@ -14,7 +13,6 @@ const UserForm: FC<UserFormProps> = ({open, setOpen}) => {
     const [sexValue, setSexValue] = useState(Sex.MALE);
 
     const onChangeSex = (e: RadioChangeEvent) => {
-        console.log('radio checked', e.target.value);
         setSexValue(e.target.value);
     };
 
@@ -23,18 +21,18 @@ const UserForm: FC<UserFormProps> = ({open, setOpen}) => {
     };
 
    const onCloseModal = () => {
+       form.resetFields();
         setOpen(false);
     }
 
    const onSubmit = () => {
-       console.log(form.getFieldsValue())
        axios.post("http://localhost:8094/api/adminpage/create", form.getFieldsValue(), {
            headers: {
                Accept: 'application/json',
                'Content-Type': 'application/json',
                'Access-Control-Allow-Origin': '*',
            },
-       }).then(r => console.log(r.data))
+       }).then(r => setOpen(false));
    }
 
     return (
@@ -137,7 +135,7 @@ const UserForm: FC<UserFormProps> = ({open, setOpen}) => {
                             {required: true, message: 'Пароли должны совпадать'},
                             ({ getFieldValue }) => ({
                                 validator(_, value) {
-                                    if (getFieldValue('password') == value) {
+                                    if (getFieldValue('password') === value) {
                                         return Promise.resolve();
                                     } else {
                                         return Promise.reject(new Error("Пароли должны совпадать"));
